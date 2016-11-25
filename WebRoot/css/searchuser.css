@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+.search {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+.usertable td th{
+	border: solid #000000;
+	border-width: 1px 1px 1px 1px;
+	padding-left: 10px;
+}
+
+.usertable {
+	border: solid #000000;
+	border-width: 1px 1px 1px 1px;
+}
