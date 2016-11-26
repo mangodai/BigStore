@@ -34,7 +34,7 @@
   
   <body>
 <div>
-	<a href="<c:url value='/BookServlet?method=findAll'/>">全部商品</a>
+	<a href="<c:url value='/BookServlet?method=findAll'/>">全部图书</a>
 </div>
 
 <ol>

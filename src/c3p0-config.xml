@@ -3,8 +3,8 @@
 	<default-config>
 		<property name="jdbcUrl">jdbc:mysql://localhost:3306/bookstore?characterEncoding=utf-8</property>
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
-		<property name="user">mangodai</property>
-		<property name="password">qq965557340</property>
+		<property name="user">root</property>
+		<property name="password">qwe123QWE123</property>
 		<property name="acquireIncrement">3</property>
 		<property name="initialPoolSize">5</property>
 		<property name="minPoolSize">2</property>

@@ -32,29 +32,6 @@ public class OrderServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
 	private OrderService orderService = new OrderService();
-	
-	/**
-	 * 买家发货
-	* @Title: deliver 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @param @param request
-	* @param @param response
-	* @param @throws ServletException
-	* @param @throws IOException    设定文件 
-	* @return void    返回类型 
-	* @throws
-	 */
-	public String deliver(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String oid = request.getParameter("oid");
-		try {
-			orderService.deliver(oid);
-			request.setAttribute("msg", "感谢卖家，您已经发货");
-		} catch (OrderException e) {
-			request.setAttribute("msg", e.getMessage());
-		}
-		return "f:/adminjsps/admin/order/list.jsp";
-	}
 
 	/**
 	 * 支付之去银行
@@ -77,7 +54,7 @@ public class OrderServlet extends BaseServlet {
 		String p0_Cmd = "Buy";
 		String p1_MerId = props.getProperty("p1_MerId");
 		String p2_Order = request.getParameter("oid");
-		String p3_Amt = request.getParameter("total");
+		String p3_Amt = "0.01";
 		String p4_Cur = "CNY";
 		String p5_Pid = "";
 		String p6_Pcat = "";

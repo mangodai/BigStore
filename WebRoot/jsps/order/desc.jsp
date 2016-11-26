@@ -67,9 +67,9 @@
 		<td width="15%">
 			<div><img src="<c:url value='/${orderItem.book.image }'/>" height="75"/></div>
 		</td>
-		<td>商品：${orderItem.book.bname }</td>
+		<td>书名：${orderItem.book.bname }</td>
 		<td>单价：${orderItem.book.price }元</td>
-		<td>卖家：${orderItem.book.author }</td>
+		<td>作者：${orderItem.book.author }</td>
 		<td>数量：${orderItem.count }</td>
 		<td>小计：${orderItem.subtotal }元</td>
 	</tr>
@@ -80,7 +80,6 @@
 <form method="post" action="<c:url value='/OrderServlet'/>" id="form" target="_parent">
 	<input type="hidden" name="method" value="zhiFu"/>
 	<input type="hidden" name="oid" value="${order.oid }"/>
-	<input type="hidden" name="total" value="${order.total }"/>
 	收货地址：<input type="text" name="address" size="50" value="3栋611"/><br/>
 
 	选择银行：<br/>

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.management.RuntimeErrorException;
-
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -22,37 +20,6 @@ import cn.itcast.jdbc.TxQueryRunner;
 
 public class OrderDao {
 	private QueryRunner qr = new TxQueryRunner();
-	
-	
-	/**
-	 * 返回所有订单
-	* @Title: findAll 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @param @param oid
-	* @param @return    设定文件 
-	* @return List<Order>    返回类型 
-	* @throws
-	 */
-	public List<Order> findAll(){
-		try {
-			String sql = "select * from orders;";
-			List<Order> orderList = qr.query(sql, new BeanListHandler<Order>(Order.class));
-			
-			/*
-			 * 2. 循环遍历每个Order，为其加载它自己所有的订单条目
-			 */
-			for(Order order : orderList) {
-				loadOrderItems(order);//为order对象添加它的所有订单条目
-			}
-			
-			/*
-			 * 3. 返回订单列表
-			 */
-			return orderList;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
 	
 	/**
 	 * 添加订单
@@ -146,7 +113,7 @@ public class OrderDao {
 		/*
 		 * 查询两张表：orderitem、book
 		 */
-		String sql = "select * from orderitem i, goods b where i.bid=b.bid and oid=?";
+		String sql = "select * from orderitem i, book b where i.bid=b.bid and oid=?";
 		/*
 		 * 因为一行结果集对应的不再是一个javabean，所以不能再使用BeanListHandler，而是MapListHandler
 		 */
@@ -245,36 +212,6 @@ public class OrderDao {
 			String sql = "update orders set state=? where oid=?";
 			qr.update(sql, state, oid);
 		} catch(SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	/**
-	 * 通过订单状态来查询
-	* @Title: findByState 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @param @param state
-	* @param @return    设定文件 
-	* @return List<Order>    返回类型 
-	* @throws
-	 */
-	public List<Order> findByState(int state) {
-		try {
-			String sql = "select * from orders where state=?";
-			List<Order> orderList = qr.query(sql, new BeanListHandler<Order>(Order.class) , state);
-			
-			/*
-			 * 2. 循环遍历每个Order，为其加载它自己所有的订单条目
-			 */
-			for(Order order : orderList) {
-				loadOrderItems(order);//为order对象添加它的所有订单条目
-			}
-			
-			/*
-			 * 3. 返回订单列表
-			 */
-			return orderList;
-		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

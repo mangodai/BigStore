@@ -77,9 +77,9 @@ public class UserDao {
 	 */
 	public void add(User user) {
 		try {
-			String sql = "insert into tb_user values(?,?,?,?,?,?,?);";
+			String sql = "insert into tb_user values(?,?,?,?,?,?)";
 			Object[] params = {user.getUid(), user.getUsername(), 
-					user.getPassword(), user.getPrivilege(), user.getEmail(), user.getCode(),
+					user.getPassword(), user.getEmail(), user.getCode(),
 					user.isState()};
 			qr.update(sql, params);
 		} catch(SQLException e) {
