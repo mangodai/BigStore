@@ -55,4 +55,10 @@ public class OrderItem {
 		this.book = book;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderItem [iid=" + iid + ", count=" + count + ", subtotal="
+				+ subtotal + ", order=" + order + ", book=" + book + "]";
+	}
+
 }

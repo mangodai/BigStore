@@ -48,11 +48,11 @@ function load() {
 	bar1.add("商品管理", "查看商品", "<c:url value='/admin/AdminBookServlet?method=findAll'/>", "body");
 	bar1.add("商品管理", "添加商品", "<c:url value='/admin/AdminBookServlet?method=addPre'/>", "body");
 
-	bar1.add("订单管理", "所有订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-	bar1.add("订单管理", "未付款订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-	bar1.add("订单管理", "已付款订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-	bar1.add("订单管理", "未收货订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-	bar1.add("订单管理", "已完成订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
+	bar1.add("订单管理", "所有订单", "<c:url value='/OrderListServlet?method=GetAll'/>", "body");
+	bar1.add("订单管理", "等待付款订单", "<c:url value='/OrderListServlet?method=findByState&state=1'/>", "body");
+	bar1.add("订单管理", "等待发货订单", "<c:url value='/OrderListServlet?method=findByState&state=2'/>", "body");
+	bar1.add("订单管理", "等待收获订单", "<c:url value='/OrderListServlet?method=findByState&state=3'/>", "body");
+	bar1.add("订单管理", "已完成订单", "<c:url value='/OrderListServlet?method=findByState&state=4'/>", "body");
 
 	// 获取div元素
 	var d = document.getElementById("menu");

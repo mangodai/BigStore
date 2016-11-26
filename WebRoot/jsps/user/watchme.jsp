@@ -25,12 +25,12 @@
 
 <body>
 	<div align="center" class="mainclass">
-		<table width="200" border="2" cellspacing="0" cellpadding="0">
+		<table width="400" border="2" cellspacing="0" cellpadding="0">
 			<caption>个人信息</caption>
 			<tr>
 				<th scope="row">序号:</th>
 				<td>${sessionScope.session_user.uid }</td>
-			</tr>
+			</tr> 
 			<tr>
 				<th scope="row">姓名：</th>
 				<td>${sessionScope.session_user.username }</td>

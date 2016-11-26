@@ -56,8 +56,8 @@
     <img src="<c:url value='/${book.image }'/>" border="0"/>
   </div>
   <ul>
-    <li>书名：${book.bname }</li>
-    <li>作者：${book.author }</li>
+    <li>物品：${book.bname }</li>
+    <li>卖家：${book.author }</li>
     <li>单价：${book.price }元</li>
   </ul>
   <form id="form" action="<c:url value='/CartServlet'/>" method="post">

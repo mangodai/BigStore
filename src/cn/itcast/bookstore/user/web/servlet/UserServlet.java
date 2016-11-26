@@ -242,6 +242,7 @@ public class UserServlet extends BaseServlet {
 		User form = CommonUtils.toBean(request.getParameterMap(), User.class);
 		// 补全
 		form.setUid(CommonUtils.uuid());
+		form.setPrivilege("normal");
 		form.setCode(CommonUtils.uuid() + CommonUtils.uuid());
 		/*
 		 * 输入校验
