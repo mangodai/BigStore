@@ -26,8 +26,8 @@
     	商品名称：<input style="width: 150px; height: 20px;" type="text" name="bname"/><br/>
     	商品图片：<input style="width: 223px; height: 20px;" type="file" name="image"/><br/>
     	商品单价：<input style="width: 150px; height: 20px;" type="text" name="price"/><br/>
-    	<%-- 商品卖家：<input style="width: 150px; height: 20px;" type="text" name="author" value="${sessionScope.session_user.username}"/><br/>
-    	 --%>
+    	商品卖家：<input style="width: 150px; height: 20px;" type="text" name="author" value="${sessionScope.session_user.username}" readonly="readonly"/><br/>
+    	 
     	 商品分类：<select style="width: 150px; height: 20px;" name="cid">
     	<c:forEach items="${categoryList }" var="c">
     		<option value="${c.cid }">${c.cname }</option>

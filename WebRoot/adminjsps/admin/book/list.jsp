@@ -33,11 +33,20 @@
   
   <body>
 <c:forEach items="${bookList }" var="book">
-   <div class="icon">
-    <a href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>"><img src="<c:url value='/${book.image }'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>">${book.bname }</a>
-  </div>
+   <c:if test="${book.author == sessionScope.session_user.username }">
+	   <div class="icon">
+	    <a href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>"><img src="<c:url value='/${book.image }'/>" border="0"/></a>
+	      <br/>
+	   	<a href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>">${book.bname }</a>
+	  </div>
+  </c:if>
+  <c:if test="${sessionScope.session_user.privilege == 'admin'}">
+	   <div class="icon">
+	    <a href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>"><img src="<c:url value='/${book.image }'/>" border="0"/></a>
+	      <br/>
+	   	<a href="<c:url value='/admin/AdminBookServlet?method=load&bid=${book.bid }'/>">${book.bname }</a>
+    </div>
+  </c:if>
 </c:forEach>
   
   

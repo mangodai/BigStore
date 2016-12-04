@@ -109,11 +109,6 @@ public class AdminAddBookServlet extends HttpServlet {
 			book.setImage("book_img/" + filename);
 			
 			
-			/*
-			 * 4. 使用BookService完成保存
-			 */
-			bookService.add(book);
-			
 			
 			/*
 			 * 校验图片的尺寸
@@ -128,6 +123,11 @@ public class AdminAddBookServlet extends HttpServlet {
 				return;
 			}
 			
+			/*
+			 * 4. 使用BookService完成保存
+			 */
+			bookService.add(book);
+			
 			
 			/*
 			 * 5. 返回到图书列表
@@ -135,12 +135,11 @@ public class AdminAddBookServlet extends HttpServlet {
 			request.getRequestDispatcher("/admin/AdminBookServlet?method=findAll")
 					.forward(request, response);
 		} catch (Exception e) { 
-			if(e instanceof FileUploadBase.FileSizeLimitExceededException) {
 				request.setAttribute("msg", "您上传的文件超出了15KB");
 				request.setAttribute("categoryList", categoryService.findAll());
 				request.getRequestDispatcher("/adminjsps/admin/book/add.jsp")
 						.forward(request, response);
-			}
+
 		}
 	}
 }
