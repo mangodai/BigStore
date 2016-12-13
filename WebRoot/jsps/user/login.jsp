@@ -32,6 +32,11 @@
  <div class="mainclass">
 	<h1>登录</h1>
 	<p style="color: red; font-weight: 900">${msg }</p>
+	<c:if test="${msg eq '尚未激活！' }">
+		<h2>
+			<a href='<c:url value='/UserServlet?method=reSendMail&username=${form.username }'/> '>在发送一封验证</a>
+		</h2>
+	</c:if>
 	<form action="<c:url value='/UserServlet'/>" method="post"
 		target="_top">
 		<input type="hidden" name="method" value="login" /> 用户帐号：<input

@@ -28,6 +28,21 @@ public class UserServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private UserService userService = new UserService();
 	
+	public String reSendMail(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+//		String id = request.getParameter("user_id");
+//		User form = userService.findByID(id);
+		
+		String username = request.getParameter("username");
+		User form = userService.findByName(username);
+		try {
+			sendMail(form);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("msg", "请前往邮箱，点击注册");
+		return "f:/jsps/msg.jsp";
+	}
 	
 	/**
 	 * 
@@ -302,6 +317,26 @@ public class UserServlet extends BaseServlet {
 		
 		/*
 		 * 发邮件
+		 */
+		try {
+			sendMail(form);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		/*
+		 * 1. 保存成功信息
+		 * 2. 转发到msg.jsp
+		 */
+		request.setAttribute("msg", "恭喜，注册成功！请马上到邮箱激活");
+		return "f:/jsps/msg.jsp";
+	}
+
+	private void sendMail(User form) throws IOException, MessagingException {
+		/*
+		 * 发邮件
 		 * 准备配置文件！
 		 */
 		// 获取配置文件内容
@@ -319,17 +354,7 @@ public class UserServlet extends BaseServlet {
 		
 		Session session = MailUtils.createSession(host, uname, pwd);//得到session
 		Mail mail = new Mail(from, to, subject, content);//创建邮件对象
-		try {
-			MailUtils.send(session, mail);//发邮件！
-		} catch (MessagingException e) {
-		}
-		
-		
-		/*
-		 * 1. 保存成功信息
-		 * 2. 转发到msg.jsp
-		 */
-		request.setAttribute("msg", "恭喜，注册成功！请马上到邮箱激活");
-		return "f:/jsps/msg.jsp";
+
+		MailUtils.send(session, mail);//发邮件！
 	}
 }
